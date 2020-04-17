@@ -7,7 +7,7 @@
             <p class="level-item"><span class="subtitle">{{subtitle}}</span></p>
           </div>
           <div class="level-right">
-            <b-button v-if="currentTab === 'article'" type="is-primary"><t-icon icon="plus" /> 发布文章</b-button>
+            <b-button v-if="currentTab === 'article'" type="is-primary" @click="$router.push('/content/publish')"><t-icon icon="plus" /> 发布文章</b-button>
             <b-button v-if="currentTab === 'category'" type="is-primary"><t-icon icon="plus" /> 创建分类</b-button>
             <b-button v-if="currentTab === 'tags'" type="is-primary"><t-icon icon="plus" /> 创建标签</b-button>
           </div>

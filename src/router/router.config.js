@@ -25,6 +25,11 @@ export const routerMap = [
             path: 'tags',
             name: 'tags',
             component: () => import('@/pages/content/tags/list'),
+          },
+          {
+            path: 'publish',
+            name: 'publish',
+            component: () => import('@/pages/content/publish'),
           }
         ]
       }
