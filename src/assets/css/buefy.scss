@@ -1,6 +1,23 @@
 @import "~bulma/sass/utilities/_all";
+// base
+$primary: #0665d0;
 
-$primary: #197ed1;
+// navbar
+$navbar-height: 3.75rem;
+
+// tab
+$tabs-border-bottom-width: 1px;
+// $tabs-toggle-link-border-width: 4px;
+
+// footer
+$footer-background-color: #fff;
+$footer-padding: 2rem 0 4rem 0;
+
+// box
+$box-shadow: 0 0 10px rgba(48,71,89,.05);
+
+// card
+$card-shadow: $box-shadow;
 
 $colors: (
     "white": ($white, $black),
@@ -13,6 +30,7 @@ $colors: (
     "warning": ($warning, $warning-invert),
     "danger": ($danger, $danger-invert),
 );
+
 
 // Import Bulma and Buefy styles
 @import "~bulma";

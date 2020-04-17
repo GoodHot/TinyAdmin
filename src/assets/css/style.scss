@@ -1,102 +1,49 @@
-$body-background: #f0f2f5;
-$body-container-max-width: 1200px;
-
-$sidebar-width: 230px;
-$sidebar-background: #fff;
-
-$screen-max-width: 1215px;
-
-$box-shadow: 0 0 20px #d8dde5;
-
-.font {
-  &-size-sm {
-    font-size: .875rem!important;
-  }
-}
-.text {
-  &-muted {
-    color: #6c757d!important;
-  }
-  &-word {
-    word-wrap: break-word;
-    word-break: break-all;
-  }
-}
-
-.m {
-  &t-1 {
-    margin-top: .375rem;
-  }
-  &t-2 {
-    margin-top: .75rem;
-  }
-}
-
-body {
-  background: $body-background;
-}
+@import './fontawesome.css';
+@import './buefy.scss';
 
 .t- {
-  &page-container {
-    display: flex;
-    .sidebar {
-      position: fixed;
-      width: $sidebar-width;
-      background: $sidebar-background;
-      overflow-y: visible;
-      box-shadow: 5px 0 10px #e4e7ed;
-      left: 0;
-      bottom: 0;
-      top: 0;
-      width: $sidebar-width;
-      .scrollbar {
-        height: 100%;
-      }
-      @media screen and (max-width: $screen-max-width){
-        display: none;
-      }
+  &navbar {
+    background-color: $primary;
+    .navbar-item {
+      font-weight: bold;
     }
-    .main {
-      padding-left: $sidebar-width;
-      width: 100%;
-      min-height: 100vh;
-      @media screen and (max-width: $screen-max-width){
-        padding-left: 0;
+    .logo  {
+      font-weight: 600;
+      font-size: 1.35rem;
+    }
+  }
+  &toolbar {
+    padding-top: 20px;
+    background: #fafbfc;
+    border-bottom: 1px solid #e1e4e8;
+    .tabs {
+      ul {
+        border-bottom-width: 0;
       }
-      &-container {
-        max-width: $body-container-max-width;
-        @media screen and (max-width: $screen-max-width){
-          max-width: 100%;
-        }
+      a {
+        border-bottom-width: 0;
       }
-      &-header {
-        max-width: $body-container-max-width;
-        padding-top: 32px;
-        padding-bottom: 2px;
-        display: -ms-flexbox;
-        display: flex;
-        -ms-flex-direction: row;
-        flex-direction: row;
-        -ms-flex-pack: justify;
-        justify-content: space-between;
-        -ms-flex-align: center;
-        align-items: center;
-        margin: 0 auto;
-        padding: 17px 0;
+      .is-active a{
+        border-bottom-width: 4px;
       }
-      &-heading {
-        margin-bottom: 25px;
-        padding-top: 40px;
-        padding-bottom: 8px;
-        font-size: 1.75rem;
-        font-weight: 400;
-        line-height: 28px;
-        border-bottom: 1px solid #e4e7ed;
+      a:hover {
+        background-color: #f5f5f5;
+        border-bottom-color: #dbdbdb;
       }
     }
   }
+  &main {
+    padding: 1.5rem 0;
+    background: #f6f8fa;
+    min-height: calc(100vh - 304px);
+  }
+  &box,&card {
+    border: 1px solid #e2e8ed;
+  }
+
   &article{
     &-group {
+      box-shadow: $box-shadow;
       position: relative;
       .scrollbar {
         max-height: 800px;
@@ -164,5 +111,45 @@ body {
     &-item+&-item {
       border-top-width: 0;
     }
+  }
+}
+
+.text {
+  &-white {
+    color: #fff!important;
+    &-75 {
+      color: rgba(255,255,255,.75)!important;
+    }
+  }
+  &-muted {
+    color: #6c757d!important;
+  }
+  &-word {
+    word-wrap: break-word;
+    word-break: break-all;
+  }
+}
+
+.font {
+  &-size-sm {
+    font-size: .875rem!important;
+  }
+}
+
+$margin1: .35rem!important;
+$margin2: .75rem!important;
+
+.m {
+  &r-1 {
+    margin-right: $margin1;
+  }
+  &r-2 {
+    margin-right: $margin2;
+  }
+  &b-1 {
+    margin-bottom: $margin1;
+  }
+  &b-2 {
+    margin-bottom: $margin2;
   }
 }
