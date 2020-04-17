@@ -13,8 +13,10 @@
           </template>
           <template slot="start">
             <b-navbar-item href="#">内容管理</b-navbar-item>
+            <b-navbar-item href="#">用户管理</b-navbar-item>
+            <b-navbar-item href="#">系统设置</b-navbar-item>
+            <b-navbar-item href="#">插件管理</b-navbar-item>
           </template>
-
           <template slot="end">
             <b-navbar-item href="#">
               <t-icon icon="plus" class="mr-1" />发布文章
@@ -31,38 +33,7 @@
         </b-navbar>
       </div>
     </div>
-    <div class="t-toolbar">
-      <div class="container">
-        <nav class="level">
-          <div class="level-left">
-            <p class="level-item"><span class="subtitle">内容管理</span></p>
-          </div>
-          <div class="level-right">
-            <b-dropdown>
-              <button class="button is-primary" slot="trigger" slot-scope="{ active }">
-                <span class="mr-1">Click me!</span>
-                <t-icon :icon="active ? 'arrow-up' : 'arrow-down'" />
-              </button>
-              <b-dropdown-item aria-role="listitem">Action</b-dropdown-item>
-              <b-dropdown-item aria-role="listitem">Another action</b-dropdown-item>
-              <b-dropdown-item aria-role="listitem">Something else</b-dropdown-item>
-            </b-dropdown>
-          </div>
-        </nav>
-        <div class="tabs">
-          <ul>
-            <li class="is-active"><a>文章管理</a></li>
-            <li><a>分类管理</a></li>
-            <li><a>标签管理</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="t-main">
-      <div class="container">
-        <router-view />
-      </div>
-    </div>
+    <router-view />
     <footer class="container footer">
       <nav class="level">
         <div class="level-left">

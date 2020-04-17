@@ -21,7 +21,8 @@
         border-bottom-width: 0;
       }
       a {
-        border-bottom-width: 0;
+        border-bottom-width: 4px;
+        border-bottom-color: transparent;
       }
       .is-active a{
         border-bottom-width: 4px;
@@ -151,5 +152,11 @@ $margin2: .75rem!important;
   }
   &b-2 {
     margin-bottom: $margin2;
+  }
+  &t-1 {
+    margin-top: $margin1;
+  }
+  &t-2 {
+    margin-top: $margin2;
   }
 }

@@ -47,6 +47,12 @@ export default {
   components: {
     ArticleGroup,
     ArticleView
-  }  
+  },
+  data () {
+    return {
+      currentTab: 'article',
+      subtitle: '文章管理'
+    }
+  }
 }
 </script>
