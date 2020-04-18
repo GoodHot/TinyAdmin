@@ -12,7 +12,7 @@
             </b-navbar-item>
           </template>
           <template slot="start">
-            <b-navbar-item href="#">内容管理</b-navbar-item>
+            <b-navbar-item tag="router-link" to="/content/article">内容管理</b-navbar-item>
             <b-navbar-item href="#">用户管理</b-navbar-item>
             <b-navbar-item href="#">系统设置</b-navbar-item>
             <b-navbar-item href="#">插件管理</b-navbar-item>

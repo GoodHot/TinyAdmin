@@ -76,6 +76,12 @@
       .columns {
         width: 100%;
       }
+      .options {
+        -ms-flex-align: center!important;
+        align-items: center!important;
+        display: -ms-flexbox!important;
+        display: flex!important;
+      }
     }
   }
 }
@@ -158,5 +164,11 @@ $margin2: .75rem!important;
   }
   &t-2 {
     margin-top: $margin2;
+  }
+}
+
+.w {
+  &100 {
+    width: 100%;
   }
 }

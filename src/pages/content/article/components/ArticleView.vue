@@ -10,11 +10,12 @@
       <div class="columns">
         <div class="column is-two-thirds">
           <a href="be_pages_generic_profile.html">Sara Fields</a>
-          <div class="text-muted font-size-sm">s.fields@example.com</div>
+          <div class="text-muted font-size-sm"><time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time></div>
         </div>
-        <div class="column has-text-right has-text-grey text-muted font-size-sm">
-          <p>March 15, 2018</p>
-          <p>14:25</p>
+        <div class="column options">
+          <div class="has-text-right w100">
+            <b-button size="is-small" type="is-primary" icon-left="edit" icon-pack="fa">编辑</b-button>
+          </div>
         </div>
       </div>
     </header>
