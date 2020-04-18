@@ -49,6 +49,11 @@ export const routerMap = [
             component: () => import('@/pages/config/system/system'),
           }
         ]
+      },
+      {
+        path: '/personal',
+        name: 'personal',
+        component: () => import('@/pages/personal/personal')
       }
     ]
   }

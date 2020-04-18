@@ -21,10 +21,10 @@
         <b-table-column field="user.first_name" label="文章数" sortable>
             {{ props.row.id }}篇
         </b-table-column>
-        <b-table-column field="user.first_name" label="操作" width="130">
+        <b-table-column field="user.first_name" label="操作" width="150">
           <div class="buttons has-addons">
-            <b-button size="is-small">编辑</b-button>
-            <b-button size="is-small">删除</b-button>
+            <b-button size="is-small" icon-left="lead-pencil">编辑</b-button>
+            <b-button size="is-small" icon-left="delete">删除</b-button>
           </div>
         </b-table-column>
       </template>

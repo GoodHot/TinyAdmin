@@ -18,11 +18,11 @@
             <!-- <b-navbar-item href="#">插件管理</b-navbar-item> -->
           </template>
           <template slot="end">
-            <b-navbar-item href="#">
+            <b-navbar-item tag="router-link" to="/content/publish">
               <t-icon icon="plus" class="mr-1" />发布文章
             </b-navbar-item>
             <b-navbar-dropdown label="Admin">
-              <b-navbar-item href="#">
+              <b-navbar-item tag="router-link" to="/personal">
                   个人设置
               </b-navbar-item>
               <b-navbar-item href="#">

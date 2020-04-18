@@ -8,6 +8,10 @@
           </div>
           <div class="level-right">
             <b-button v-if="currentTab === 'skin'" type="is-primary" class="mr-1"><t-icon icon="plus" /> 上传皮肤</b-button>
+            <div class="buttons has-addons" v-if="currentTab === 'system'" >
+              <b-button type="is-primary" icon-left="plus">创建自定义字段</b-button>
+              <b-button type="is-primary" icon-left="refresh">清空缓存</b-button>
+            </div>
           </div>
         </nav>
         <div class="tabs">
