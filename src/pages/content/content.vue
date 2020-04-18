@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="t-toolbar">
+    <div class="t-toolbar" v-if="currentTab !== 'publish'">
       <div class="container">
         <nav class="level">
           <div class="level-left">

@@ -1,20 +1,19 @@
 <template>
-  <div class="editable">
+  <div class="box t-box">
+    <textarea placeholder="输入Markdown" style="width: 100%; max-width: 100%; height: 200px; outline: none"></textarea>
   </div>
 </template>
 <script>
-import MEditor from 'medium-editor'
-import 'medium-editor/dist/css/medium-editor.css'
-import 'medium-editor/dist/css/themes/beagle.css'
-
 export default {
+  components: {
+  },
   data () {
     return {
-      editor: null
+      currentTab: 'publish',
+      subtitle: '发布文章',
     }
   },
   mounted () {
-    this.editor = new MEditor('.editable');
   }
 }
 </script>

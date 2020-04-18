@@ -32,6 +32,23 @@ export const routerMap = [
             component: () => import('@/pages/content/publish'),
           }
         ]
+      },
+      {
+        path: '/config',
+        name: 'config',
+        component: () => import('@/pages/config/config'),
+        children: [
+          {
+            path: 'skin',
+            name: 'skin',
+            component: () => import('@/pages/config/skin/list'),
+          },
+          {
+            path: 'system',
+            name: 'system',
+            component: () => import('@/pages/config/system/system'),
+          }
+        ]
       }
     ]
   }

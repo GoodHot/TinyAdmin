@@ -63,8 +63,8 @@
         </t-list-group>
       <!-- </simplebar> -->
     </div>
-    <b-pagination
-        class="mt-2"
+    <div class="box t-box mt-2">
+      <b-pagination
         :total="2000"
         :current="10"
         :range-before="1"
@@ -72,7 +72,8 @@
         :simple="true"
         size="is-small"
         order="is-centered">
-    </b-pagination>
+      </b-pagination>
+    </div>
   </div>
 </template>
 <script>
