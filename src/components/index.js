@@ -4,6 +4,7 @@ import listGroupItem from './list-group/list-group-item'
 import icon from './icon/icon'
 import form from './form/form'
 import nestable from './nestable/nestable'
+import markdown from './markdown/markdown'
 
 export default {
   't-sidebar': sidebar,
@@ -11,5 +12,6 @@ export default {
   't-list-group-item': listGroupItem,
   't-icon': icon,
   't-form': form,
-  't-nestable': nestable
+  't-nestable': nestable,
+  't-markdown': markdown
 }
