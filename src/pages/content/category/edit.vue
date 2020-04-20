@@ -7,17 +7,7 @@
 </template>
 <script>
 import { vType } from '@/utils/valid'
-import { getCategoryByName, getCategoryByPath } from '@/api/category'
-
-// function checkCategoryName(name) {
-//   var get = async 
-  // return getCategoryByName(name).then(res => {
-  //   console.log(res)
-  //   return false
-  // }).catch(() => {
-  //   console.log("error")
-  // })
-// }
+import { getCategoryByName, getCategoryByPath, saveCategory } from '@/api/category'
 
 export default {
   data () {
@@ -94,14 +84,27 @@ export default {
           label: '图标',
           tag: 'icon',
           placeholder: '上传分类图标',
-          valid: [vType.require('请上传分类图标')]
+          // valid: [vType.require('请上传分类图标')]
         }
       ]
     }
   },
   methods: {
     save () {
-      this.$refs.categoryForm.validate()
+      if (this.$refs.categoryForm.validate()) {
+        this.loading = true
+        this.$refs.categoryForm.submit(data => {
+          saveCategory(data).then(() => {
+            this.$buefy.toast.open({
+              message: '创建分类成功!',
+              type: 'is-success'
+            })
+            setTimeout(() => {
+              this.$router.push('/content/category')
+            }, 1000)
+          })
+        })
+      }
     },
     async checkName (name) {
       return await getCategoryByName(name).then((res) => {

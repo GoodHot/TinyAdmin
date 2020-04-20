@@ -7,7 +7,7 @@
       </template>
       <b-input v-if="item.type === 'input'" @blur="validation(item)" :disabled="item.loading" :loading="item.loading" :placeholder="item.placeholder" v-model="item.value"></b-input>
       <b-input v-if="item.type === 'textarea'" @blur="validation(item)" :disabled="item.loading" :loading="item.loading" :placeholder="item.placeholder" v-model="item.value" type="textarea"></b-input>
-      <b-upload drag-drop v-if="item.type === 'imageUpload'" accept=".jpg,.jpeg,.png,.gif">
+      <b-upload drag-drop v-if="item.type === 'imageUpload'" accept=".jpg,.jpeg,.png,.gif" @input="imageUploadChange($event, item)">
         <section class="section" v-if="!item.value">
           <div class="content has-text-centered" >
             <p>
@@ -19,7 +19,7 @@
             <p>Drop your files here or click to upload</p>
           </div>
         </section>
-        <img src="https://bulma.io/images/placeholders/480x320.png" style="max-height: 100%; max-width: 100%;" v-else>
+        <img :src="assetsURL(item.value)" v-else>
       </b-upload>
     </b-field>
   </div>
@@ -27,6 +27,7 @@
 <script>
 import {PropTypes} from '@/utils/types'
 import { valid } from '@/utils/valid'
+import { uploadFile } from '@/api/upload'
 
 export default {
   props: {
@@ -66,7 +67,7 @@ export default {
       let hasErr = false
       this.items.map(item => {
         valid.valid(item)
-        if (!item.validState) {
+        if (item.validState !== null && !item.validState) {
           hasErr = true
         }
       })
@@ -78,6 +79,11 @@ export default {
         data[item.name] = item.value
       })
       callback(data)
+    },
+    imageUploadChange (file, item) {
+      uploadFile(file).then(res => {
+        item.value = res.path
+      })
     }
   },
   watch: {

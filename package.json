@@ -16,6 +16,7 @@
     "simplebar-vue": "^1.4.0",
     "vue": "^2.6.11",
     "vue-ls": "^3.2.1",
+    "vue-nestable": "^2.5.3",
     "vue-router": "^3.1.6"
   },
   "devDependencies": {

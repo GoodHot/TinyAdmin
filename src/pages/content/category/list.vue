@@ -7,26 +7,33 @@
       checkable
       sort-icon="arrow-up"
       :paginated="true"
-      :current-page="1"
+      :backend-pagination="true"
+      :current-page="pagination.current"
+      :total="pagination.total"
+      :per-page="pagination.pageSize"
+      :loading="loading"
+      @page-change="pageChange"
     >
       <template slot-scope="props">
         <b-table-column field="id" label="ID" width="40" sortable numeric>
           {{ props.row.id }}
         </b-table-column>
         <b-table-column field="user.first_name" label="图标">
-            {{ props.row.first_name }}
+          <figure class="image is-24x24">
+            <img :src="assetsURL(props.row.icon)">
+          </figure>
         </b-table-column>
-        <b-table-column field="user.first_name" label="名称" sortable>
-          {{ props.row.first_name }}
+        <b-table-column field="user.first_name" label="名称">
+          {{ props.row.name }}
         </b-table-column>
         <b-table-column field="user.first_name" label="路径">
-          <b-tag rounded>http://localhost:9090/{{ props.row.first_name }}</b-tag>
+          <b-tag rounded>http://localhost:9090/cat/{{ props.row.path }}</b-tag>
         </b-table-column>
         <b-table-column field="user.first_name" label="文章数" sortable>
-            {{ props.row.first_name }}
+            {{ props.row.article_count }}
         </b-table-column>
         <b-table-column field="user.first_name" label="备注">
-            {{ props.row.first_name }}
+            {{ props.row.remark }}
         </b-table-column>
         <b-table-column field="user.first_name" label="操作" width="150">
           <div class="buttons has-addons">
@@ -39,19 +46,40 @@
   </div>
 </template>
 <script>
+import { getCategoryByPage } from '@/api/category'
+
 export default {
   data () {
     return {
       currentTab: 'category',
       subtitle: '分类管理',
-      data: [
-        { 'id': 1, 'first_name': 'Jesse', 'last_name': 'Simmons', 'date': '2016-10-15 13:43:27', 'gender': 'Male' },
-        { 'id': 2, 'first_name': 'John', 'last_name': 'Jacobs', 'date': '2016-12-15 06:00:53', 'gender': 'Male' },
-        { 'id': 3, 'first_name': 'Tina', 'last_name': 'Gilbert', 'date': '2016-04-26 06:26:28', 'gender': 'Female' },
-        { 'id': 4, 'first_name': 'Clarence', 'last_name': 'Flores', 'date': '2016-04-10 10:28:46', 'gender': 'Male' },
-        { 'id': 5, 'first_name': 'Anne', 'last_name': 'Lee', 'date': '2016-12-06 14:38:38', 'gender': 'Female' }
-      ],
-      checkedRows: []
+      loading: false,
+      data: [],
+      checkedRows: [],
+      pagination: {
+        total: 1,
+        current: 1,
+        pageSize: 1
+      }
+    }
+  },
+  mounted () {
+    this.loadCategory()
+  },
+  methods: {
+    loadCategory () {
+      this.loading = true
+      getCategoryByPage(this.pagination.current, '').then(res => {
+        this.data = res.page.list
+        this.pagination.total = res.page.total_count
+        this.pagination.pageSize = res.page.page_size
+        this.loading = false
+        console.log(this.pagination)
+      })
+    },
+    pageChange (num) {
+      this.pagination.current = num
+      this.loadCategory()
     }
   }
 }

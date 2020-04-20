@@ -35,8 +35,13 @@ export const routerMap = [
           },
           {
             path: 'category/add',
-            name: 'category/Add',
+            name: 'categoryAdd',
             component: () => import('@/pages/content/category/edit'),
+          },
+          {
+            path: 'category/sort',
+            name: 'categorySort',
+            component: () => import('@/pages/content/category/sort'),
           },
           {
             path: 'tags',
