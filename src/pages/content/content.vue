@@ -4,12 +4,20 @@
       <div class="container">
         <nav class="level">
           <div class="level-left">
-            <p class="level-item"><span class="subtitle">{{subtitle}}</span></p>
+            <nav class="breadcrumb is-medium" aria-label="breadcrumbs">
+              <ul>
+                <li><a href="#">分类管理</a></li>
+                <li class="is-active"><a href="#" aria-current="page">创建分类</a></li>
+              </ul>
+            </nav>
+            <!-- <p class="level-item"><span class="subtitle">{{subtitle}}</span></p> -->
           </div>
           <div class="level-right">
-            <b-button v-if="currentTab === 'article'" type="is-primary" @click="$router.push('/content/publish')"><t-icon icon="plus" /> 发布文章</b-button>
-            <b-button v-if="currentTab === 'category'" type="is-primary" class="mr-1"><t-icon icon="plus" /> 创建分类</b-button>
-            <b-button v-if="currentTab === 'category'" type="is-primary"><t-icon icon="sort" /> 分类排序</b-button>
+            <b-button v-if="currentTab === 'article'" type="is-primary" tag="router-link" to="/content/publish"><t-icon icon="plus" /> 发布文章</b-button>
+            <div class="buttons has-addons" v-if="currentTab === 'category'" >
+              <b-button type="is-primary" tag="router-link" to="/content/category/add" icon-left="plus">创建分类</b-button>
+              <b-button type="is-primary" icon-left="sort">分类排序</b-button>
+            </div>
             <b-button v-if="currentTab === 'tags'" type="is-primary"><t-icon icon="plus" /> 创建标签</b-button>
           </div>
         </nav>
@@ -34,7 +42,8 @@ export default {
   data () {
     return {
       currentTab: 'article',
-      subtitle: ''
+      subtitle: '',
+      showCategoryModal: false
     }
   },
   mounted () {

@@ -135,6 +135,9 @@
     word-wrap: break-word;
     word-break: break-all;
   }
+  &-must {
+    color: red;
+  }
 }
 
 .font {

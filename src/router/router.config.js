@@ -1,6 +1,18 @@
 
 export const routerMap = [
   {
+    path: '/auth',
+    name: 'auth',
+    component: () => import('@/layouts/AuthLayout'),
+    children: [
+      {
+        path: 'login',
+        name: 'login',
+        component: () => import('@/pages/auth/login'),
+      }
+    ]
+  },
+  {
     path: '/',
     name: 'index',
     component: () => import('@/layouts/BaseLayout'),
@@ -20,6 +32,11 @@ export const routerMap = [
             path: 'category',
             name: 'category',
             component: () => import('@/pages/content/category/list'),
+          },
+          {
+            path: 'category/add',
+            name: 'category/Add',
+            component: () => import('@/pages/content/category/edit'),
           },
           {
             path: 'tags',

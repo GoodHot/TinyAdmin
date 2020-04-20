@@ -6,7 +6,9 @@ import '@/assets/css/style.scss'
 import '@mdi/font/css/materialdesignicons.css'
 import router from './router'
 import Components from './components'
+import Storage from 'vue-ls'
 
+Vue.use(Storage)
 Vue.use(Buefy)
 Vue.config.productionTip = false
 
