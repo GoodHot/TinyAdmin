@@ -4,8 +4,7 @@
     <b-field>
       <b-input placeholder="Search..."
         type="search"
-        icon-pack="fas"
-        icon="search"
+        icon="magnify"
         icon-clickable>
       </b-input>
     </b-field>
@@ -37,11 +36,11 @@
       <!-- <simplebar class="scrollbar"> -->
         <t-list-group>
           <t-list-group-item class="t-article-group-item" v-for="article of articles" :key="article.id">
-            <h2><b-tag type="is-primary">草稿</b-tag> {{ article.title }}</h2>
-            <p class="font-size-sm text-muted text-word">Our new photo pack is now available to go live and we couldn’t be more excited..</p>
+            <h2><b-tag type="is-primary" v-if="article.status === 2">草稿</b-tag> {{ article.title }}</h2>
+            <p class="font-size-sm text-muted text-word">{{ article.description }}</p>
             <small class="font-size-sm text-muted">
-              <strong class="text-muted">愤怒</strong>,
-              <time datetime="article.created_at">2020-02-02 12:32:44</time>
+              <strong class="text-muted">{{ article.author_name }}</strong>,
+              <time :datetime="article.created_at">{{ article.created_at }}</time>
             </small>
           </t-list-group-item>
         </t-list-group>
