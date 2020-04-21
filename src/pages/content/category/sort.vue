@@ -21,7 +21,16 @@ export default {
       data: [],
       loading: false,
       currentTab: 'category',
-      subtitle: '分类排序',
+      breadcrumbs: [
+        {
+          name: '分类管理',
+          router: '/content/category'
+        },
+        {
+          name: '分类排序',
+          active: true
+        }
+      ]
     }
   },
   mounted () {

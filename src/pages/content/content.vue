@@ -4,13 +4,14 @@
       <div class="container">
         <nav class="level">
           <div class="level-left">
-            <nav class="breadcrumb is-medium" aria-label="breadcrumbs">
+            <nav class="breadcrumb is-medium">
               <ul>
-                <li><a href="#">分类管理</a></li>
-                <li class="is-active"><a href="#" aria-current="page">创建分类</a></li>
+                <li v-for="(item, i) in breadcrumbs" :key="i" :class="item.active ? 'is-active' : ''">
+                  <router-link :to="item.router" v-if="item.router">{{ item.name }}</router-link>
+                  <a v-else>{{ item.name }}</a>
+                </li>
               </ul>
             </nav>
-            <!-- <p class="level-item"><span class="subtitle">{{subtitle}}</span></p> -->
           </div>
           <div class="level-right">
             <b-button v-if="currentTab === 'article'" type="is-primary" tag="router-link" to="/content/publish"><t-icon icon="plus" /> 发布文章</b-button>
@@ -42,7 +43,7 @@ export default {
   data () {
     return {
       currentTab: 'article',
-      subtitle: '',
+      breadcrumbs: [],
       showCategoryModal: false
     }
   },
@@ -55,7 +56,7 @@ export default {
   methods: {
     updateCurrentTab () {
       this.currentTab = this.$refs.routerView.currentTab
-      this.subtitle =  this.$refs.routerView.subtitle
+      this.breadcrumbs = this.$refs.routerView.breadcrumbs
     }
   }
 }

@@ -83,6 +83,30 @@
         display: flex!important;
       }
     }
+
+    &-editor-title {
+      width: 100%;
+      outline: none;
+      height: 4rem;
+      text-align: center;
+      font-size: 2.75rem;
+      padding: 2rem 0 3rem 0;
+      border: 0;
+      border-bottom: 2px dashed #ddd;
+    }
+
+    &-editor-option {
+      position: fixed;
+      bottom: -10px;
+      width: 100%;
+      left: 0;
+      z-index: 1;
+      .hide-button {
+        position: absolute;
+        right: 1px;
+        top: 1px;
+      }
+    }
   }
 }
 
@@ -156,6 +180,9 @@ $margin2: .75rem!important;
   &r-2 {
     margin-right: $margin2;
   }
+  &b-0 {
+    margin-bottom: 0!important;
+  }
   &b-1 {
     margin-bottom: $margin1;
   }
@@ -173,5 +200,27 @@ $margin2: .75rem!important;
 .w {
   &100 {
     width: 100%;
+  }
+}
+
+.uselect {
+  .avatar {
+    display: block;
+    height: 2.25rem;
+    padding: 0;
+    img {
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+      width: 2.25rem;
+      height: 2.25rem;
+    }
+  }
+  .name {
+    height: 2.25rem;
+    font-weight: bold;
+    font-size: 1rem;
+  }
+  .tags .tag {
+    margin-bottom: 0;
   }
 }

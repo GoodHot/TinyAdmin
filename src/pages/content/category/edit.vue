@@ -13,7 +13,16 @@ export default {
   data () {
     return {
       currentTab: 'category',
-      subtitle: '创建一个新分类',
+      breadcrumbs: [
+        {
+          name: '分类管理',
+          router: '/content/category'
+        },
+        {
+          name: '创建分类',
+          active: true
+        }
+      ],
       loading: false,
       form: [
         {

@@ -5,6 +5,8 @@ import icon from './icon/icon'
 import form from './form/form'
 import nestable from './nestable/nestable'
 import markdown from './markdown/markdown'
+import userSelect from './select/user-select'
+import categorySelect from './select/category-select'
 
 export default {
   't-sidebar': sidebar,
@@ -13,5 +15,7 @@ export default {
   't-icon': icon,
   't-form': form,
   't-nestable': nestable,
-  't-markdown': markdown
+  't-markdown': markdown,
+  't-user-select': userSelect,
+  't-category-select': categorySelect
 }

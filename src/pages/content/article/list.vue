@@ -22,7 +22,12 @@ export default {
   data () {
     return {
       currentTab: 'article',
-      subtitle: '文章管理'
+      breadcrumbs: [
+        {
+          name: '文章管理',
+          active: true
+        }
+      ]
     }
   }
 }

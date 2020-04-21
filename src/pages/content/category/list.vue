@@ -52,7 +52,12 @@ export default {
   data () {
     return {
       currentTab: 'category',
-      subtitle: '分类管理',
+      breadcrumbs: [
+        {
+          name: '分类管理',
+          active: true
+        }
+      ],
       loading: false,
       data: [],
       checkedRows: [],

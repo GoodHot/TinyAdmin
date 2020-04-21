@@ -51,7 +51,7 @@ export const routerMap = [
           {
             path: 'publish',
             name: 'publish',
-            component: () => import('@/pages/content/publish'),
+            component: () => import('@/pages/content/publish/publish'),
           }
         ]
       },
