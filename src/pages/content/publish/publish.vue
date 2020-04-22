@@ -1,8 +1,9 @@
 <template>
   <div>
+    <b-loading :is-full-page="false" :active.sync="loading" :can-cancel="false"></b-loading>
     <div class="box t-box">
       <input type="text" v-model="articleTitle" placeholder="请输入文章标题" class="t-article-editor-title" />
-      <t-markdown ref="markdown" v-model="markdown"></t-markdown>
+      <textarea v-model="markdown" style="width: 100%; min-height: 200px; outline: none;"></textarea>
     </div>
     <div class="box t-box">
       <nav class="level">
@@ -40,7 +41,7 @@
 import setting from './modal/setting'
 import Vue from 'vue'
 const ls_key_write_setting = 'w_setting'
-import { saveArticle } from '@/api/article'
+import { saveArticle, getArticleById } from '@/api/article'
 
 export default {
   components: {
@@ -49,6 +50,7 @@ export default {
   data () {
     return {
       currentTab: 'article',
+      loading: false,
       markdown: '# 你好，世界',
       breadcrumbs: [
         {
@@ -73,8 +75,23 @@ export default {
   },
   mounted () {
     this.loadWriteSetting()
+    this.loadArticle()
   },
   methods: {
+    loadArticle () {
+      const id = this.$route.params.id
+      if (!id) {
+        return
+      }
+      this.loading = true
+      getArticleById(id).then(res => {
+        this.id = res.article.id
+        this.articleTitle = res.article.title
+        this.markdown = res.content.source
+        this.$refs.setting.refresh(res.article)
+        this.loading = false
+      })
+    },
     saveWriteSetting (e, key) {
       this.writeSetting[key] = e
       Vue.ls.set(ls_key_write_setting, this.writeSetting)
@@ -100,10 +117,7 @@ export default {
       this.enableAutoSave(st.autoSave)
     },
     saveArticle (type) {
-      console.log(type)
-      const content = this.$refs.markdown.getValue()
       const setting = this.$refs.setting.getData()
-      console.log(setting)
       const tags = []
       if (setting.publish.tags && setting.publish.tags.length > 0) {
         setting.publish.tags.map(t => {
@@ -129,11 +143,10 @@ export default {
           status: type === 'draft' ? 2 : 1,
           author: setting.publish.authorId,
           template: setting.publish.template,
-          visibility: setting.publish.visibility
+          visible: setting.publish.visible
         },
         content: {
-          markdown: content.markdown,
-          html: content.html
+          source: this.markdown
         },
         get_cover: this.writeSetting.getCover,
         get_net_image: this.writeSetting.getNetImage,

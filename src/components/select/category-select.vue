@@ -105,6 +105,11 @@ export default {
         }
       }
     }
+  },
+  watch: {
+    value () {
+      this.setCurrent()
+    }
   }
 }
 </script>

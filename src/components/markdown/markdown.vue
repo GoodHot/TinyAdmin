@@ -26,6 +26,7 @@ export default {
     }
   },
   mounted () {
+    this.markdown = this.value
     this.initMarkdown()
   },
   methods: {
@@ -56,7 +57,8 @@ export default {
           url: config.baseURL + '/upload/markdown',
           headers: {},
           format: this.uploadFormat
-        }
+        },
+        value: this.markdown
       }
       options.upload.headers[ACCESS_TOKEN] = Vue.ls.get(ACCESS_TOKEN)
       this.contentEditor = new Vditor('editor', options)
@@ -76,7 +78,7 @@ export default {
     }
   },
   watch: {
-    value(val) {
+    value (val) {
       this.contentEditor.setValue(val)
     }
   }

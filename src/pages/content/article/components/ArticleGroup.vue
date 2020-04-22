@@ -99,9 +99,14 @@ export default {
       })
     },
     onperview () {
-      this.$emit('preview', this.activeItem)
+      if (this.activeItem) {
+        this.$emit('preview', this.activeItem)
+      }
     },
     groupClick (item) {
+      if (item.id === this.activeItem.id) {
+        return
+      }
       item.active = true
       this.activeItem.active = false
       this.activeItem = item

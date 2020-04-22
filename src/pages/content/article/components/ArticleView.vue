@@ -15,7 +15,7 @@
           </div>
           <div class="column options">
             <div class="has-text-right w100">
-              <b-button size="is-small" type="is-primary" icon-left="lead-pencil">编辑</b-button>
+              <b-button size="is-small" type="is-primary" icon-left="lead-pencil" @click="$router.push('/content/edit/' + article.id)">编辑</b-button>
             </div>
           </div>
         </div>
@@ -45,7 +45,7 @@ import moment from 'moment'
 export default {
   data() {
     return {
-      loading: true,
+      loading: false,
       article: null,
       content: null
     }

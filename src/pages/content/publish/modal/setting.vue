@@ -7,7 +7,7 @@
           <b-tab-item label="发布设置">
             <b-field grouped>
               <b-field label="可见性" expanded>
-                <b-select v-model="publishSetting.visibility" placeholder="选择可见性" expanded>
+                <b-select v-model="publishSetting.visible" placeholder="选择可见性" expanded>
                   <option :value="1">所有人可见</option>
                   <option :value="2">仅自己可见</option>
                 </b-select>
@@ -80,7 +80,7 @@ export default {
     return {
       active: false,
       publishSetting: {
-        visibility: 1,
+        visible: 1,
         template: "post.html",
         authorId: 0,
         category: 0,
@@ -110,6 +110,20 @@ export default {
         seo: this.seoSetting,
         cover: this.cover
       }
+    },
+    refresh (article) {
+      this.publishSetting.visible = article.visible
+      this.publishSetting.template = article.template
+      this.publishSetting.authorId = article.author
+      this.publishSetting.category = article.category_id
+      this.publishSetting.tags = article.tags.split(',')
+
+      this.seoSetting.seo_title = article.seo_title
+      this.seoSetting.seo_description = article.seo_description
+      this.seoSetting.seo_keyword = article.seo_keyword.split(',')
+      this.seoSetting.description = article.description
+      
+      this.cover = article.cover
     }
   }
 }
