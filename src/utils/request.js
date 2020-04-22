@@ -1,5 +1,6 @@
 import axios from 'axios'
 import Vue from 'vue'
+import { ToastProgrammatic as Toast } from 'buefy'
 
 const ACCESS_TOKEN = 'ACCESS-TOKEN'
 
@@ -59,11 +60,10 @@ service.interceptors.response.use((response) => {
   const data = response.data
   if (data.status !== 200) {
     const msg = data.msg || '请求失败:\r\n' + response.config.url
-    // notification.error({
-    //   message: 'Server:' + data.status,
-    //   description: msg
-    // })
-    alert(msg)
+    Toast.open({
+      message: msg,
+      type: 'is-danger'
+    })
     return Promise.reject(data)
   }
   return data.data

@@ -7,7 +7,8 @@
 </template>
 <script>
 import { vType } from '@/utils/valid'
-import { getCategoryByName, getCategoryByPath, saveCategory } from '@/api/category'
+// getCategoryByName, getCategoryByPath
+import { saveCategory } from '@/api/category'
 
 export default {
   data () {
@@ -38,7 +39,7 @@ export default {
           tag: 'name',
           must: true,
           placeholder: '这个分类叫什么名字？',
-          valid: [vType.require('请输入分类名称'), vType.length(1, 255, '分类名称长度为1~255个字符'), vType.custom(this.checkName, '分类名称已存在')]
+          valid: [vType.require('请输入分类名称'), vType.length(1, 255, '分类名称长度为1~255个字符')]
         },
         {
           name: 'path',
@@ -48,7 +49,7 @@ export default {
           tag: 'path',
           must: true,
           placeholder: '好的路径有利于SEO哦',
-          valid: [vType.require('请输入分类路径'), vType.regex('^[a-zA-Z0-9\\-]+$', '路径只能为字母和数字或横杠(-)'), vType.length(1, 255, '路径长度为1~255个字符'), vType.custom(this.checkPath, '分类路径已经存在')]
+          valid: [vType.require('请输入分类路径'), vType.regex('^[a-zA-Z0-9\\-]+$', '路径只能为字母和数字或横杠(-)'), vType.length(1, 255, '路径长度为1~255个字符')]
         },
         {
           name: 'seo_title',
@@ -99,7 +100,7 @@ export default {
     }
   },
   methods: {
-    save () {
+    async save () {
       if (this.$refs.categoryForm.validate()) {
         this.loading = true
         this.$refs.categoryForm.submit(data => {
@@ -111,29 +112,11 @@ export default {
             setTimeout(() => {
               this.$router.push('/content/category')
             }, 1000)
+          }).catch(() => {
+            this.loading = false
           })
         })
       }
-    },
-    async checkName (name) {
-      return await getCategoryByName(name).then((res) => {
-        if (!res.categorys) {
-          return false
-        }
-        return res.categorys.length > 0
-      }).catch(() => {
-        return true
-      })
-    },
-    async checkPath (path) {
-      return await getCategoryByPath(path).then((res) => {
-        if (!res.categorys) {
-          return false
-        }
-        return res.categorys.length > 0
-      }).catch(() => {
-        return true
-      })
     }
   }
 }

@@ -36,7 +36,7 @@ export const vType = {
 }
 
 export const valid = {
-  async valid (item) {
+  valid (item) {
     if (!item.valid) {
       item.validState = true
       return
@@ -46,7 +46,7 @@ export const valid = {
       const rule = item.valid[key]
       if (valid[rule.type]) {
         item.loading = true
-        const flag = await valid[rule.type](rule, item.value)
+        const flag = valid[rule.type](rule, item.value)
         item.loading = false
         if (flag) {
           errCount ++
@@ -97,8 +97,8 @@ export const valid = {
     }
     return false
   },
-  async custom (rule, val) {
-    return await rule.func(val)
+  custom (rule, val) {
+    return rule.func(val)
   }
 }
 
