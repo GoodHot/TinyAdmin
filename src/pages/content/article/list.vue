@@ -1,11 +1,11 @@
 <template>
   <div class="columns">
     <div class="column">
-      <article-group></article-group>
+      <article-group @preview="previewArticle"></article-group>
     </div>
     <div class="column is-three-quarters">
       <div class="card t-card">
-        <article-view></article-view>
+        <article-view ref="articleView"></article-view>
       </div>
     </div>
   </div>
@@ -28,6 +28,11 @@ export default {
           active: true
         }
       ]
+    }
+  },
+  methods: {
+    previewArticle (article) {
+      this.$refs.articleView.loadArticle(article.id)
     }
   }
 }

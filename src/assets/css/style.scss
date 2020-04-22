@@ -73,6 +73,10 @@
           margin-right: 10px;
         }
       }
+      .card-footer {
+        padding: .625rem;
+        background: #f9fafc!important;
+      }
       .columns {
         width: 100%;
       }
@@ -142,6 +146,13 @@
     &-item+&-item {
       border-top-width: 0;
     }
+    &-item-active {
+      border-left: 2px solid #4a4a4a;
+      background: #f1f1f1;
+      &:hover {
+        background: #f1f1f1;
+      }
+    }
   }
 }
 
@@ -178,6 +189,12 @@ $margin2: .75rem!important;
     margin-right: $margin1;
   }
   &r-2 {
+    margin-right: $margin2;
+  }
+  &l-1 {
+    margin-right: $margin1;
+  }
+  &l-2 {
     margin-right: $margin2;
   }
   &b-0 {

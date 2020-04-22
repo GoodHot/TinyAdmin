@@ -35,12 +35,12 @@
     <div class="t-article-group">
       <!-- <simplebar class="scrollbar"> -->
         <t-list-group>
-          <t-list-group-item class="t-article-group-item" v-for="article of articles" :key="article.id">
+          <t-list-group-item class="t-article-group-item" v-for="article of articles" :key="article.id" :active="article.active" :data="article" @onclick="groupClick">
             <h2><b-tag type="is-primary" v-if="article.status === 2">草稿</b-tag> {{ article.title }}</h2>
             <p class="font-size-sm text-muted text-word">{{ article.description }}</p>
             <small class="font-size-sm text-muted">
               <strong class="text-muted">{{ article.author_name }}</strong>,
-              <time :datetime="article.created_at">{{ article.created_at }}</time>
+              <time :datetime="article.created_at">{{ dateFmt(article.created_at) }}</time>
             </small>
           </t-list-group-item>
         </t-list-group>
@@ -63,51 +63,52 @@
 // import simplebar from 'simplebar-vue'
 // import 'simplebar/dist/simplebar.min.css'
 import { articlePage } from '@/api/article'
+import moment from 'moment'
 
 export default {
   data() {
     return {
       loading: false,
-      articles: []
+      articles: [],
+      search: {
+        page: 1
+      },
+      activeItem: 0
     }
   },
   components: {
     // simplebar
   },
   mounted () {
-    this.loadArticlePage('previewFirst')
+    this.loadArticlePage()
   },
   methods: {
     loadArticlePage () {
       this.loading = true
-      articlePage({
-        page: 1
-      }).then(res => {
-        console.log(res)
-        this.articles = res.page.list
+      articlePage(this.search).then(res => {
+        const temp = res.page.list
+        temp.map((article, index) => {
+          article.active = index === 0
+          if (index === 0) {
+            this.activeItem = article
+          }
+        })
+        this.articles = temp
         this.loading = false
+        this.onperview()
       })
-      // const param = {}
-      // if (this.advancedSearch) {
-      //   param.page = this.search.page
-      //   param.keyword = this.search.keyword
-      //   param.user = this.search.user
-      //   param.category = this.search.category
-      // } else {
-      //   param.page = this.search.page
-      //   param.keyword = this.search.keyword
-      // }
-      // articlePage(param).then(res => {
-      //   const tmp = res.page.list
-      //   tmp.map(art => {
-      //     art.created_at_fmt = this.fmtDateAgo(art.created_at)
-      //   })
-      //   this.articles = tmp
-      //   this.loading = false
-      //   if (perview && this.articles && this.articles.length > 0) {
-      //     this.onperview(this.articles[0].id)
-      //   }
-      // })
+    },
+    onperview () {
+      this.$emit('preview', this.activeItem)
+    },
+    groupClick (item) {
+      item.active = true
+      this.activeItem.active = false
+      this.activeItem = item
+      this.onperview()
+    },
+    dateFmt (dt) {
+      return moment(dt).format('YYYY-MM-DD H:mm:ss')
     }
   }
 }

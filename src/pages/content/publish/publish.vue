@@ -68,7 +68,7 @@ export default {
       },
       autoSaveTimer: null,
       id: 0,
-      articleTitle: ''
+      articleTitle: 'hello world'
     }
   },
   mounted () {
