@@ -2,7 +2,7 @@ import {request} from '@/utils/request'
 
 export function getAllAdmin () {
   return request({
-    url: '/admin/all',
+    url: '/user/all',
     method: 'get'
   })
 }

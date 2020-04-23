@@ -6,7 +6,8 @@ const ACCESS_TOKEN = 'ACCESS-TOKEN'
 
 const requestConfig = {
   baseURL: 'http://localhost:9000/admin',
-  assetsURL: 'http://localhost:9000'
+  assetsURL: 'http://localhost:9000',
+  websiteURL: 'http://localhost:8080'
 }
 
 // 创建 axios 实例
@@ -18,29 +19,20 @@ const service = axios.create({
 const err = (error) => {
   if (error.response) {
     const data = error.response.data
-    const token = Vue.ls.get(ACCESS_TOKEN)
+    // const token = Vue.ls.get(ACCESS_TOKEN)
     if (error.response.status === 403) {
-      // notification.error({
-      //   message: 'Forbidden',
-      //   description: data.msg
-      // })
-      alert(data.msg)
+      Toast.open({
+        message: data.msg,
+        type: 'is-danger'
+      })
     }
     if (error.response.status === 401 && !(data.result && data.result.isLogin)) {
       const msg = data.msg || 'Authorization verification failed'
-      // notification.error({
-      //   message: 'Unauthorized',
-      //   description: msg
-      // })
-      window.location = "/#/auth/login"
-      alert(msg)
-      if (token) {
-        // store.dispatch('Logout').then(() => {
-        //   setTimeout(() => {
-        //     window.location.reload()
-        //   }, 1500)
-        // })
-      }
+      Toast.open({
+        message: msg,
+        type: 'is-danger'
+      })
+      window.location = requestConfig.websiteURL + "/#/auth/login"
     }
   }
   return Promise.reject(error)

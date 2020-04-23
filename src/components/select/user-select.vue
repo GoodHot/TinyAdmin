@@ -40,7 +40,7 @@
 }
 </style>
 <script>
-import { getAllAdmin } from '@/api/admin'
+import { getAllAdmin } from '@/api/user'
 import { PropTypes } from '@/utils/types'
 
 export default {
