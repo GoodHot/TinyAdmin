@@ -14,7 +14,7 @@
             </b-input>
           </b-field>
           <b-field>
-            <b-input placeholder="密码" v-model="form.username" type="password" icon="lock">
+            <b-input placeholder="密码" v-model="form.password" type="password" icon="lock">
             </b-input>
           </b-field>
           <b-button type="is-primary" expanded @click="onSubmit">登录</b-button>
@@ -36,8 +36,8 @@ export default {
   data () {
     return {
       form: {
-        username: 'admin',
-        password: 'admin'
+        username: '',
+        password: ''
       },
       loading: false
     }

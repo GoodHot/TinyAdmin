@@ -7,23 +7,24 @@
       :current-page="1"
       detailed
       detail-key="id"
+      :loading="loading"
     >
       <template slot-scope="props">
         <b-table-column field="id" label="ID" width="40" sortable numeric>
           {{ props.row.id }}
         </b-table-column>
         <b-table-column field="user.first_name" label="名称" sortable>
-          {{ props.row.first_name }}
+          {{ props.row.name }}
         </b-table-column>
         <b-table-column field="user.first_name" label="路径">
-          <b-tag rounded>/tags/{{ props.row.first_name }}</b-tag>
+          <b-tag rounded>/tags/{{ props.row.path }}</b-tag>
         </b-table-column>
         <b-table-column field="user.first_name" label="文章数" sortable>
-            {{ props.row.id }}篇
+            {{ props.row.article_count }}篇
         </b-table-column>
         <b-table-column field="user.first_name" label="操作" width="150">
           <div class="buttons has-addons">
-            <b-button size="is-small" icon-left="lead-pencil">编辑</b-button>
+            <b-button size="is-small" icon-left="lead-pencil" tag="router-link" :to="`/content/tags/edit/${props.row.id}`">编辑</b-button>
             <b-button size="is-small" icon-left="delete">删除</b-button>
           </div>
         </b-table-column>
@@ -45,19 +46,16 @@
         <article class="media">
           <figure class="media-left">
             <p class="image is-64x64">
-                <img src="/static/img/placeholder-128x128.png">
+              <img :src="assetsURL(props.row.icon)">
             </p>
           </figure>
           <div class="media-content">
             <div class="content">
               <p>
-                <strong>{{ props.row.first_name }} {{ props.row.last_name }}</strong>
-                <small>@{{ props.row.first_name }}</small>
-                <small>31m</small>
+                <strong class="mr-2">MetaTitle: {{ props.row.meta_title }}</strong>
+                <strong>MetaDescription: {{ props.row.meta_description }}</strong>
                 <br>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Proin ornare magna eros, eu pellentesque tortor vestibulum ut.
-                Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.
+                描述：{{ props.row.description }}
               </p>
             </div>
           </div>
@@ -67,6 +65,8 @@
   </div>
 </template>
 <script>
+import {getTagByPage} from '@/api/tag'
+
 export default {
   data () {
     return {
@@ -77,13 +77,25 @@ export default {
           active: true
         }
       ],
-      data: [
-        { 'id': 1, 'first_name': 'Jesse', 'last_name': 'Simmons', 'date': '2016-10-15 13:43:27', 'gender': 'Male' },
-        { 'id': 2, 'first_name': 'John', 'last_name': 'Jacobs', 'date': '2016-12-15 06:00:53', 'gender': 'Male' },
-        { 'id': 3, 'first_name': 'Tina', 'last_name': 'Gilbert', 'date': '2016-04-26 06:26:28', 'gender': 'Female' },
-        { 'id': 4, 'first_name': 'Clarence', 'last_name': 'Flores', 'date': '2016-04-10 10:28:46', 'gender': 'Male' },
-        { 'id': 5, 'first_name': 'Anne', 'last_name': 'Lee', 'date': '2016-12-06 14:38:38', 'gender': 'Female' }
-      ]
+      loading: false,
+      data: [],
+      pagination: {
+        total: 1,
+        current: 1,
+        pageSize: 1
+      }
+    }
+  },
+  mounted () {
+    this.loadTags()
+  },
+  methods: {
+    loadTags () {
+      this.loading = true
+      getTagByPage(this.pagination.current, '').then(res => {
+        this.loading = false
+        this.data = res.page.list
+      })
     }
   }
 }
