@@ -1,6 +1,6 @@
 <template>
   <div class="box t-box">
-    <b-button size="is-small" icon-left="delete" v-if="checkedRows.length > 0" @click="deleteCategory">删除选中的{{ checkedRows.length }}个分类</b-button>
+    <b-button size="is-small" icon-left="delete" v-if="checkedRows.length > 0" @click="deleteCategory()">删除选中的{{ checkedRows.length }}个分类</b-button>
     <b-table
       :data="data"
       :checked-rows.sync="checkedRows"
@@ -39,7 +39,7 @@
         <b-table-column field="user.first_name" label="操作" width="150">
           <div class="buttons has-addons">
             <b-button size="is-small" icon-left="lead-pencil">编辑</b-button>
-            <b-button size="is-small" icon-left="delete" @click="deleteCategory">删除</b-button>
+            <b-button size="is-small" icon-left="delete" @click="deleteCategory(props.row.id)">删除</b-button>
           </div>
         </b-table-column>
       </template>
@@ -47,7 +47,7 @@
   </div>
 </template>
 <script>
-import { getCategoryByPage } from '@/api/category'
+import { getCategoryByPage, deleteCategory } from '@/api/category'
 
 export default {
   data () {
@@ -80,26 +80,37 @@ export default {
         this.pagination.total = res.page.total_count
         this.pagination.pageSize = res.page.page_size
         this.loading = false
-        console.log(this.pagination)
       })
     },
     pageChange (num) {
       this.pagination.current = num
       this.loadCategory()
     },
-    deleteCategory () {
+    deleteCategory (id) {
       this.$buefy.dialog.confirm({
           title: '删除分类',
-          message: '分类删除后<b>不可恢复</b>， 确定要删除这些分类吗? ',
+          message: '分类删除后<b>不可恢复</b>, 所关联该分类的文章也会<b>取消关联</b>，确定要删除这些分类吗? ',
           confirmText: '确定删除',
           cancelText: '再想想',
           type: 'is-danger',
           hasIcon: true,
           onConfirm: () => {
-            this.$buefy.toast.open({
-              message: '功能还没做呢，哈哈哈哈!',
-              type: 'is-success'
-            })
+            this.loading = true
+            const ids = []
+            if (id) {
+              ids.push(id)
+            } else {
+              this.checkedRows.map(item => ids.push(item.id))
+            }
+            deleteCategory({
+              category_ids: ids
+            }).then(() => {
+              this.$buefy.toast.open({
+                message: '删除成功',
+                type: 'is-success'
+              })
+              this.loadCategory()
+            }).catch(() => this.loading = false)
           }
       })
     }

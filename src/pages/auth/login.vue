@@ -51,6 +51,8 @@ export default {
         window.setTimeout(() => {
           this.$router.push('/')
         }, 1000)
+      }).catch(() => {
+        this.loading = false
       })
     }
   }

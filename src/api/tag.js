@@ -22,3 +22,11 @@ export function getTag (id) {
     method: 'get'
   })
 }
+
+export function deleteTags (param) {
+  return request({
+    url: '/tag',
+    method: 'delete',
+    data: param
+  })
+}

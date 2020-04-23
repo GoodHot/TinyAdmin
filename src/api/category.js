@@ -50,3 +50,11 @@ export function categorySort (param) {
     data: param
   })
 }
+
+export function deleteCategory (param) {
+  return request({
+    url: '/category',
+    method: 'delete',
+    data: param
+  })
+}

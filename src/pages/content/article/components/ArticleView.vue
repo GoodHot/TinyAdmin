@@ -15,7 +15,8 @@
           </div>
           <div class="column options">
             <div class="has-text-right w100">
-              <b-button size="is-small" type="is-primary" icon-left="lead-pencil" @click="$router.push('/content/edit/' + article.id)">编辑</b-button>
+              <b-button size="is-small" class="mr-1" type="is-primary" icon-left="lead-pencil" @click="$router.push('/content/edit/' + article.id)">编辑</b-button>
+              <b-button size="is-small" icon-left="delete" @click="deleteArticle(article.id)" >删除</b-button>
             </div>
           </div>
         </div>
@@ -39,7 +40,7 @@
   </div>
 </template>
 <script>
-import { getArticleById } from '@/api/article'
+import { getArticleById, deleteArticles } from '@/api/article'
 import moment from 'moment'
 
 export default {
@@ -64,6 +65,28 @@ export default {
     },
     tagSplit (tags) {
       return tags.split(',')
+    },
+    deleteArticle (id) {
+      this.$buefy.dialog.confirm({
+          title: '删除文章',
+          message: '确定要删除该文章吗? ',
+          confirmText: '确定删除',
+          cancelText: '再想想',
+          type: 'is-danger',
+          hasIcon: true,
+          onConfirm: () => {
+            this.loading = true
+            deleteArticles({
+              ids: [id]
+            }).then(() => {
+              this.$buefy.toast.open({
+                message: '删除成功',
+                type: 'is-success'
+              })
+              this.$emit('delete')
+            }).catch(() => this.loading = false)
+          }
+      })
     }
   }
 }

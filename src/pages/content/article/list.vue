@@ -1,11 +1,11 @@
 <template>
   <div class="columns">
     <div class="column">
-      <article-group @preview="previewArticle"></article-group>
+      <article-group ref="articleGroup" @preview="previewArticle"></article-group>
     </div>
     <div class="column is-three-quarters">
       <div class="card t-card">
-        <article-view ref="articleView"></article-view>
+        <article-view ref="articleView" @delete="onDelete"></article-view>
       </div>
     </div>
   </div>
@@ -33,6 +33,9 @@ export default {
   methods: {
     previewArticle (article) {
       this.$refs.articleView.loadArticle(article.id)
+    },
+    onDelete () {
+      this.$refs.articleGroup.loadArticlePage()
     }
   }
 }
