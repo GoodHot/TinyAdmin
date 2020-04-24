@@ -64,6 +64,24 @@ export default {
           valid: [vType.require('请输入登录密码'),vType.length(6, 32, '登录密码长度为6~32个字符')]
         },
         {
+          name: 'visible',
+          value: '',
+          type: 'radio',
+          options: [
+            {
+              value: true,
+              text: '显示'
+            },
+            {
+              value: false,
+              text: '隐藏'
+            }
+          ],
+          label: '作者页显示',
+          tag: 'visible',
+          description: '是否在作者页面显示'
+        },
+        {
           name: 'avatar',
           value: '',
           type: 'imageUpload',

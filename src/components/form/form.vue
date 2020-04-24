@@ -22,6 +22,11 @@
         </section>
         <img :src="assetsURL(item.value)" v-else>
       </b-upload>
+      <div class="block"  v-if="item.type === 'radio'">
+        <b-radio v-model="item.value" v-for="(opt, index) in item.options" :key="index" :native-value="opt.value">
+          {{ opt.text }}
+        </b-radio>
+      </div>
     </b-field>
   </div>
 </template>

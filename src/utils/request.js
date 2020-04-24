@@ -9,7 +9,6 @@ const requestConfig = {
   assetsURL: 'http://localhost:9000',
   websiteURL: 'http://localhost:8080'
 }
-
 // 创建 axios 实例
 const service = axios.create({
   baseURL: requestConfig.baseURL, // api base_url

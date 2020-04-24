@@ -65,6 +65,20 @@
         </b-field>
       </b-tab-item>
     </b-tabs>
+    <!-- <nav class="level">
+      <div class="level-left">
+      </div>
+      <div class="level-right">
+        <div class="level-item">
+        </div>
+        <div class="level-item">
+          <b-button icon-left="content-save" @click="saveArticle('draft')">保存为草稿</b-button>
+        </div>
+        <div class="level-item">
+          <b-button type="is-primary" icon-left="send" @click="saveArticle('publish')">立即发布</b-button>
+        </div>
+      </div>
+    </nav> -->
   </div>
 </template>
 <script>
@@ -109,7 +123,7 @@ export default {
     refresh (article) {
       this.publishSetting.visible = article.visible
       this.publishSetting.template = article.template
-      this.publishSetting.authorId = article.author
+      this.publishSetting.authorId = article.author_id
       this.publishSetting.category = article.category_id
       this.publishSetting.tags = article.tags.split(',')
 

@@ -6,3 +6,10 @@ export function getAllSkin () {
     method: 'get'
   })
 }
+
+export function switchSkin (id) {
+  return request({
+    url: `/skin/switch/${id}`,
+    method: 'put'
+  })
+}

@@ -9,7 +9,7 @@
     <div class="box t-box">
       <nav class="level">
         <div class="level-left">
-          <div class="level-item">
+          <!-- <div class="level-item">
             <b-checkbox v-model="writeSetting.autoSave" @input="saveWriteSetting($event, 'autoSave')">自动保存内容为草稿（30秒一次）</b-checkbox>
           </div>
           <div class="level-item">
@@ -20,7 +20,7 @@
           </div>
           <div class="level-item">
             <b-checkbox v-model="writeSetting.getDescription" @input="saveWriteSetting($event, 'getDescription')">自动获取内容简介</b-checkbox>
-          </div>
+          </div> -->
         </div>
         <div class="level-right">
           <div class="level-item">
@@ -141,7 +141,7 @@ export default {
           description: setting.seo.description,
           cover: setting.cover,
           status: type === 'draft' ? 2 : 1,
-          author: setting.publish.authorId,
+          author_id: setting.publish.authorId,
           template: setting.publish.template,
           visible: setting.publish.visible
         },

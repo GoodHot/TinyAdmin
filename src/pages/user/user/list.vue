@@ -10,16 +10,20 @@
         <b-table-column field="id" label="ID" width="40" sortable numeric>
           {{ props.row.id }}
         </b-table-column>
-        <b-table-column field="user.first_name" label="头像">
+        <b-table-column label="头像">
           <img :src="assetsURL(props.row.avatar)" width="24px" height="24px">
         </b-table-column>
-        <b-table-column field="user.first_name" label="用户名">
+        <b-table-column label="用户名">
           {{ props.row.username }}
         </b-table-column>
-        <b-table-column field="user.first_name" label="昵称">
+        <b-table-column label="昵称">
           {{ props.row.nickname }}
         </b-table-column>
-        <b-table-column field="user.first_name" label="操作" width="240">
+        <b-table-column label="页面可见">
+          <b-tag type="is-info" v-if="props.row.visible">可见</b-tag>
+          <b-tag v-else>不可见</b-tag>
+        </b-table-column>
+        <b-table-column label="操作" width="240">
           <div class="buttons has-addons">
             <b-button size="is-small" icon-left="lead-pencil" tag="router-link" :to="`/user/edit/${props.row.id}`">编辑</b-button>
             <b-button size="is-small" icon-left="lock" tag="router-link" :to="`/user/password/${props.row.id}`">重置密码</b-button>
