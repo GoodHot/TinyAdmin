@@ -66,7 +66,7 @@ export default {
         return
       }
       getAllAdmin().then(res => {
-        this.users = res.admins
+        this.users = res.users
         this.setCurrent()
       })
     },

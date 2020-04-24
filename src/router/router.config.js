@@ -85,7 +85,29 @@ export const routerMap = [
       {
         path: '/user',
         name: 'user',
-        component: () => import('@/pages/user/user')
+        component: () => import('@/pages/user/user'),
+        children: [
+          {
+            path: 'list',
+            name: 'userList',
+            component: () => import('@/pages/user/user/list'),
+          },
+          {
+            path: 'create',
+            name: 'userCreate',
+            component: () => import('@/pages/user/user/edit'),
+          },
+          {
+            path: 'edit/:id',
+            name: 'userEdit',
+            component: () => import('@/pages/user/user/edit'),
+          },
+          {
+            path: 'password/:id',
+            name: 'userEdit',
+            component: () => import('@/pages/user/user/password'),
+          }
+        ]
       },
       {
         path: '/personal',

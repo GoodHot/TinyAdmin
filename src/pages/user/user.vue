@@ -17,13 +17,13 @@
             </nav>
           </div>
           <div class="level-right">
-            <b-button type="is-primary" tag="router-link" to="/content/publish" icon-left="account"> 创建新用户</b-button>
+            <b-button type="is-primary" tag="router-link" to="/user/create" icon-left="account"> 创建新用户</b-button>
           </div>
         </nav>
         <div class="tabs">
           <ul>
-            <li :class="currentTab === 'article' ? 'is-active':''"><router-link to="/content/article">用户列表</router-link></li>
-            <li :class="currentTab === 'role' ? 'is-active':''"><router-link to="/content/article">角色管理</router-link></li>
+            <li :class="currentTab === 'user' ? 'is-active':''"><router-link to="/user/list">用户列表</router-link></li>
+            <!-- <li :class="currentTab === 'role' ? 'is-active':''"><router-link to="/content/article">角色管理</router-link></li> -->
           </ul>
         </div>
       </div>
@@ -39,9 +39,21 @@
 export default {
   data () {
     return {
-      currentTab: 'article',
+      currentTab: 'user',
       breadcrumbs: [],
       showCategoryModal: false
+    }
+  },
+  mounted () {
+    this.updateCurrentTab()
+  },
+  updated () {
+    this.updateCurrentTab()
+  },
+  methods: {
+    updateCurrentTab () {
+      this.currentTab = this.$refs.routerView.currentTab
+      this.breadcrumbs = this.$refs.routerView.breadcrumbs
     }
   }
 }

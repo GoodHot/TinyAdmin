@@ -98,19 +98,6 @@
       border: 0;
       border-bottom: 2px dashed #ddd;
     }
-
-    &-editor-option {
-      position: fixed;
-      bottom: -10px;
-      width: 100%;
-      left: 0;
-      z-index: 1;
-      .hide-button {
-        position: absolute;
-        right: 1px;
-        top: 1px;
-      }
-    }
   }
 }
 

@@ -5,6 +5,7 @@
       <input type="text" v-model="articleTitle" placeholder="请输入文章标题" class="t-article-editor-title" />
       <textarea v-model="markdown" style="width: 100%; min-height: 200px; outline: none;"></textarea>
     </div>
+    <setting ref="setting"></setting>
     <div class="box t-box">
       <nav class="level">
         <div class="level-left">
@@ -23,7 +24,7 @@
         </div>
         <div class="level-right">
           <div class="level-item">
-            <b-button icon-left="code-braces" @click="$refs.setting.show()">文章设置</b-button>
+            <!-- <b-button icon-left="code-braces" @click="$refs.setting.show()">文章设置</b-button> -->
           </div>
           <div class="level-item">
             <b-button icon-left="content-save" @click="saveArticle('draft')">保存为草稿</b-button>
@@ -34,7 +35,6 @@
         </div>
       </nav>
     </div>
-    <setting ref="setting"></setting>
   </div>
 </template>
 <script>
