@@ -6,7 +6,10 @@
         {{ cfg.name }}
         <t-copy-tag :copyText="`{{${prefix} ${syh}${cfg.key}${syh}}}`"></t-copy-tag>
       </template>
-      <b-input v-model="cfg.value"></b-input>
+      <b-input v-if="cfg.opt_type === 'text'" v-model="cfg.value"></b-input>
+      <b-input v-if="cfg.opt_type === 'textarea'" type="textarea" v-model="cfg.value"></b-input>
+      <b-input v-if="cfg.opt_type === 'tags'" v-model="cfg.value"></b-input>
+      <t-image-upload v-if="cfg.opt_type === 'uploadImage'" v-model="cfg.value" ></t-image-upload>
     </b-field>
     <b-field label="" v-if="config && config.length > 0">
       <b-button @click="save">保存</b-button>

@@ -7,7 +7,7 @@
       </template>
       <b-input v-if="item.type === 'input'" @blur="validation(item)" :disabled="item.loading" :loading="item.loading" :placeholder="item.placeholder" v-model="item.value"></b-input>
       <b-input v-if="item.type === 'password'" type="password" @blur="validation(item)" :disabled="item.loading" :loading="item.loading" :placeholder="item.placeholder" v-model="item.value"></b-input>
-      <b-input v-if="item.type === 'textarea'" @blur="validation(item)" :disabled="item.loading" :loading="item.loading" :placeholder="item.placeholder" v-model="item.value" type="textarea"></b-input>
+      <b-input v-if="item.type === 'textarea'" type="textarea" @blur="validation(item)" :disabled="item.loading" :loading="item.loading" :placeholder="item.placeholder" v-model="item.value"></b-input>
       <b-upload drag-drop v-if="item.type === 'imageUpload'" accept=".jpg,.jpeg,.png,.gif" @input="imageUploadChange($event, item)">
         <section class="section" v-if="!item.value">
           <div class="content has-text-centered" >

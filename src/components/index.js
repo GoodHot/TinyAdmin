@@ -8,6 +8,7 @@ import markdown from './markdown/markdown'
 import userSelect from './select/user-select'
 import categorySelect from './select/category-select'
 import copyTag from './tag/copy-tag'
+import imageUpload from './upload/image-upload'
 
 export default {
   't-sidebar': sidebar,
@@ -19,5 +20,6 @@ export default {
   't-markdown': markdown,
   't-user-select': userSelect,
   't-category-select': categorySelect,
-  't-copy-tag': copyTag
+  't-copy-tag': copyTag,
+  't-image-upload': imageUpload
 }

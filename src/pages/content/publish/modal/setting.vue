@@ -125,7 +125,7 @@ export default {
       this.publishSetting.template = article.template
       this.publishSetting.authorId = article.author_id
       this.publishSetting.category = article.category_id
-      this.publishSetting.tags = article.tags.split(',')
+      this.publishSetting.tags = article.tags === '' ? [] : article.tags.split(',')
 
       this.seoSetting.seo_title = article.seo_title
       this.seoSetting.seo_description = article.seo_description
