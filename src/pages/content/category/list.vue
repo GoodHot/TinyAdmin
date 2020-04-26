@@ -38,7 +38,7 @@
         </b-table-column>
         <b-table-column field="user.first_name" label="操作" width="150">
           <div class="buttons has-addons">
-            <b-button size="is-small" icon-left="lead-pencil">编辑</b-button>
+            <b-button size="is-small" icon-left="lead-pencil" tag="router-link" :to="`/content/category/edit/${props.row.id}`">编辑</b-button>
             <b-button size="is-small" icon-left="delete" @click="deleteCategory(props.row.id)">删除</b-button>
           </div>
         </b-table-column>

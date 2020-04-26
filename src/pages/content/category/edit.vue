@@ -7,8 +7,7 @@
 </template>
 <script>
 import { vType } from '@/utils/valid'
-// getCategoryByName, getCategoryByPath
-import { saveCategory } from '@/api/category'
+import { saveCategory, getCategory } from '@/api/category'
 
 export default {
   data () {
@@ -99,8 +98,28 @@ export default {
       ]
     }
   },
+  mounted () {
+    this.loadCategory()
+  },
   methods: {
-    async save () {
+    loadCategory () {
+      const id = this.$route.params.id
+      if (!id) {
+        return
+      }
+      this.loading = true
+      getCategory(id).then(res => {
+        const category = res.category
+        const temp = []
+        this.form.map(item => {
+          item.value = category[item.name]
+          temp.push(item)
+        })
+        this.form = temp
+        this.loading = false
+      })
+    },
+    save () {
       if (this.$refs.categoryForm.validate()) {
         this.loading = true
         this.$refs.categoryForm.submit(data => {

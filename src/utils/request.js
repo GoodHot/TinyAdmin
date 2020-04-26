@@ -4,11 +4,7 @@ import { ToastProgrammatic as Toast } from 'buefy'
 
 const ACCESS_TOKEN = 'ACCESS-TOKEN'
 
-const requestConfig = {
-  baseURL: 'http://localhost:9000/admin',
-  assetsURL: 'http://localhost:9000',
-  websiteURL: 'http://localhost:8080'
-}
+const requestConfig = window.config
 // 创建 axios 实例
 const service = axios.create({
   baseURL: requestConfig.baseURL, // api base_url
