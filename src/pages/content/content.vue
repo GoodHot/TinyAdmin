@@ -19,7 +19,7 @@
               <b-button type="is-primary" tag="router-link" to="/content/category/add" icon-left="plus">创建分类</b-button>
               <b-button type="is-primary" tag="router-link" to="/content/category/sort" icon-left="sort">分类排序</b-button>
             </div>
-            <b-button v-if="currentTab === 'tags'" type="is-primary"><t-icon icon="plus" /> 创建标签</b-button>
+            <b-button v-if="currentTab === 'tags'" type="is-primary" tag="router-link" :to="`/content/tags/add`"><t-icon icon="plus" /> 创建标签</b-button>
           </div>
         </nav>
         <div class="tabs">

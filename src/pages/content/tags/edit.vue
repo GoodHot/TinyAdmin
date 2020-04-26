@@ -19,11 +19,12 @@ export default {
           router: '/content/tags'
         },
         {
-          name: '编辑标签',
+          name: '创建标签',
           active: true
         }
       ],
       loading: false,
+      isEdit: false,
       form: [
         {
           name: 'id',
@@ -97,7 +98,9 @@ export default {
       if (!id) {
         return
       }
+      this.isEdit = true
       this.loading = true
+      this.breadcrumbs[1].name = "修改标签"
       getTag(id).then(res => {
         const tag = res.tag
         const temp = []
@@ -115,7 +118,7 @@ export default {
         this.$refs.tagsForm.submit(data => {
           saveTag(data).then(() => {
             this.$buefy.toast.open({
-              message: '修改标签成功!',
+              message: (this.isEdit ? '修改':'创建') + '标签成功!',
               type: 'is-success'
             })
             setTimeout(() => {

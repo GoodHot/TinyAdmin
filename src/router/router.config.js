@@ -59,6 +59,11 @@ export const routerMap = [
             component: () => import('@/pages/content/tags/edit'),
           },
           {
+            path: 'tags/add',
+            name: 'tagsAdd',
+            component: () => import('@/pages/content/tags/edit'),
+          },
+          {
             path: 'publish',
             name: 'publish',
             component: () => import('@/pages/content/publish/publish'),
