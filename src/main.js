@@ -8,6 +8,7 @@ import router from './router'
 import Components from './components'
 import Storage from 'vue-ls'
 import { config } from '@/utils/request'
+import { getConfigByGroup } from '@/api/config'
 
 Vue.use(Storage)
 Vue.use(Buefy)
@@ -17,15 +18,23 @@ for (const key in Components) {
   Vue.component(key, Components[key])
 }
 
-Vue.prototype.assetsURL = function (src) {
-  if (!src) {
-    return 'http://wx4.sinaimg.cn/mw600/0085KTY1gy1gd66pwrkqij30hs0hsgmb.jpg'
+// 加载系统配置
+getConfigByGroup('system').then(res => {
+  const systemCfg = {}
+  res.config.map(cfg => {
+    systemCfg[cfg.key] = cfg.value
+  })
+  Vue.prototype.$systemCfg = systemCfg
+  Vue.prototype.assetsURL = function (src) {
+    if (!src) {
+      src = systemCfg.default_avatar
+    }
+    if (src.startsWith('http')) {
+      return src
+    }
+    return config.assetsURL + src
   }
-  if (src.startsWith('http')) {
-    return src
-  }
-  return config.assetsURL + src
-}
+})
 
 new Vue({
   router,

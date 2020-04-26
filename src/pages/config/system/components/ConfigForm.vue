@@ -43,6 +43,11 @@ export default {
     },
     save () {
       this.loading = true
+      this.config.map(cfg => {
+        if (cfg.key === 'default_avatar') {
+          this.$systemCfg.default_avatar = cfg.value
+        }
+      })
       updateConfig({
         config: this.config
       }).then(() => {
