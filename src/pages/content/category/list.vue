@@ -28,7 +28,7 @@
           {{ props.row.name }}
         </b-table-column>
         <b-table-column field="user.first_name" label="路径">
-          <b-tag rounded>http://localhost:9090/cat/{{ props.row.path }}</b-tag>
+          <b-tag rounded>/category/{{ props.row.path }}</b-tag>
         </b-table-column>
         <b-table-column field="user.first_name" label="文章数" sortable>
             {{ props.row.article_count }}

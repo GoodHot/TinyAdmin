@@ -48,13 +48,13 @@
     </div>
     <div class="box t-box mt-2" v-if="articles.length !== 0">
       <b-pagination
-        :total="2000"
-        :current="10"
-        :range-before="1"
-        :range-after="1"
+        :total="page.total"
+        :current.sync="page.curr"
+        :per-page="page.size"
         :simple="true"
         size="is-small"
-        order="is-centered">
+        order="is-centered"
+        @change="pageChange">
       </b-pagination>
     </div>
   </div>
@@ -73,7 +73,12 @@ export default {
       search: {
         page: 1
       },
-      activeItem: 0
+      activeItem: 0,
+      page: {
+        total: 0,
+        curr: 1,
+        size: 0
+      }
     }
   },
   components: {
@@ -86,6 +91,7 @@ export default {
     loadArticlePage () {
       this.loading = true
       articlePage(this.search).then(res => {
+        console.log(res)
         const temp = res.page.list
         temp.map((article, index) => {
           article.active = index === 0
@@ -93,6 +99,9 @@ export default {
             this.activeItem = article
           }
         })
+        this.page.total = res.page.total_count
+        this.page.size = res.page.page_size
+        this.page.curr = res.page.page_num
         this.articles = temp
         this.loading = false
         this.onperview()
@@ -114,6 +123,11 @@ export default {
     },
     dateFmt (dt) {
       return moment(dt).format('YYYY-MM-DD H:mm:ss')
+    },
+    pageChange (num) {
+      console.log(num)
+      this.search.page = num
+      this.loadArticlePage()
     }
   }
 }

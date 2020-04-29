@@ -5,6 +5,7 @@ import { ToastProgrammatic as Toast } from 'buefy'
 const ACCESS_TOKEN = 'ACCESS-TOKEN'
 
 const requestConfig = window.config
+
 // 创建 axios 实例
 const service = axios.create({
   baseURL: requestConfig.baseURL, // api base_url

@@ -74,7 +74,7 @@ export default {
     }
   },
   mounted () {
-    this.loadWriteSetting()
+    // this.loadWriteSetting()
     this.loadArticle()
   },
   methods: {
@@ -154,7 +154,13 @@ export default {
         tags
       }
       saveArticle(post).then(() => {
-        alert('发布成功')
+        this.$buefy.toast.open({
+          message: this.id > 0 ? '编辑成功！' : '发布成功！',
+          type: 'is-success'
+        })
+        setTimeout(() => {
+          this.$router.push('/content/article')
+        }, 500)
       })
     }
   }
